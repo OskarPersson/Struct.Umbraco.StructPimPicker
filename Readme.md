@@ -1,4 +1,4 @@
-﻿# Umbraco.Cms.Integrations.PIM.Inriver
+﻿# Struct.Umbraco.StructPimPicker
 
 This integration provides a custom product picker that can be used as a property editor 
 for content, a value converter providing a strongly typed model for rendering selected 
