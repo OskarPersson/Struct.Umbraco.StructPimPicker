@@ -1,0 +1,42 @@
+﻿<umb-load-indicator ng-if="loaded == false">
+</umb-load-indicator>
+
+<div class="pim-pane" ng-show="loaded">
+    <div class="card">
+        <div class="card-body">
+            <div class="pull-left" ng-if="getNumberOfSelectedItems() > 0">
+                <strong>{{getNumberOfSelectedItems()}} <localize key="structUmbracoStructPimPicker_selected"></localize></strong>
+                <button type="button" class="btn btn-link" ng-click="deselectAll()">
+                    <span style="display:flex; align-items:center;justify-content:center;flex-wrap:wrap;">
+                        <i class="icon-delete"></i>
+                        clear
+                    </span>
+                </button>
+            </div>
+            <div class="pull-right"  style="display:flex; align-items:center;justify-content:center;flex-wrap:wrap;">
+                <div ng-show="entityTypes.length > 1" style="margin-right: 10px">
+                    <div style="font-size: 10px; float: left; position: absolute; top: -2px; color:#555; padding-left:2px; padding-right:2px;"><localize key="structUmbracoStructPimPicker_whatToSearch"></localize></div>
+                    <select class="form-control" ng-model="config.entityType" ng-options="option.id as option.text for option in entityTypes">
+                        
+                    </select>
+                </div>
+
+                <button type="button" class="btn btn-link" ng-click="openListConfiguration()">
+                    <i class="pim-icon pim-icon-view-settings-columns"></i>
+                </button>
+                <button type="button" class="btn btn-link" ng-click="openHelpDialog()">
+                    <i class="pim-icon pim-icon-help"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <struct-umbraco-struct-pim-picker-overlay ng-if="setup.overlay.show"
+                                                     model="setup.overlay"
+                                                     view="setup.overlay.view"
+                                                     position="right"
+                                                     class="pim-overlay--half">
+    </struct-umbraco-struct-pim-picker-overlay>
+
+    <struct-umbraco-struct-pim-picker-pim-search-table></struct-umbraco-struct-pim-picker-pim-search-table>
+</div>

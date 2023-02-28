@@ -1,0 +1,86 @@
+﻿<ng-form class="pim-overlay__form" name="overlayForm">
+
+    <div class="pim-overlay-header">
+        <div class="pim-overlay-header__left-content">
+            <h4 class="pim-overlay__title">Help</h4>
+            <p class="pim-overlay__subtitle">
+                Here you find tips and tricks on how to use the search in the Struct PIM Item Picker
+            </p>
+        </div>
+    </div>
+
+    <div class="pim-overlay-container form-horizontal bg-gray-10">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Help sections<small>Select the section you want to learn more about</small></h4>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="search-help">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#search-help" ng-click="helpSection = 'search-help-columns'">
+                                Columns
+                            </a>
+                        </div>
+                        <div id="search-help-columns" class="accordion-body"  ng-if="helpSection == 'search-help-columns'">
+                            <div class="accordion-inner">
+                                <ul>
+                                    <li>You can control which columns to show by clicking the <i class="pim-icon pim-icon-view-settings-columns"></i> button.</li>
+                                    <li>You can save multiple column setups for quick reuse</li>
+                                    <li>Column setups are saved independently for products and variants</li>
+                                    <li>Column setups are personal and does not affect other users of the system</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#search-help" ng-click="helpSection = 'search-help-searching'">
+                                Searching
+                            </a>
+                        </div>
+                        <div id="search-help-searching" class="accordion-body" ng-if="helpSection == 'search-help-searching'">
+                            <div class="accordion-inner">
+                                By default, the system searches for results that <u>starts whith</u> the value you are have written in the search box. You are able to refine the search in different ways described below.
+                                <br /><br />
+                                <strong>Operators</strong><br /><small>A number of different search operators can be used to make complex queries</small><br /><br />
+                                <ul>
+                                    <li>If you search for: <strong>struct</strong><br /><small>Search will return all items where the value <u>starts with</u> <strong>struct</strong></small></li>
+                                    <li>If you search for: <strong>*struct</strong><br /><small>Search will return all items where the value <u>contains</u> <strong>struct</strong></small></li>
+                                    <li>If you search for: <strong>"struct"</strong><br /><small>Search will return all items where the value <u>equals</u> exactly <strong>struct</strong></small></li>
+                                    <li>If you search for: <strong>!struct</strong><br /><small>Search will returnall items where the value <u>does not start with</u> <strong>struct</strong></small></li>
+                                    <li>If you search for: <strong>!*struct</strong><br /><small>Search will return all items where the value <u>does not contain</u> <strong>struct</strong></small></li>
+                                    <li>If you search for: <strong>!"struct"</strong><br /><small>Search will return all items items where the <u>value not equal to</u> <strong>struct</strong></small></li>
+                                    <li>If you search for: <strong>""</strong><br /><small>Search will return all items where this value <u>is empty</u></small></li>
+                                    <li>If you search for: <strong>!""</strong><br /><small>Search will return all items where this value <u>is not empty</u></small></li>
+                                </ul><br /><br />
+
+                                <strong>Date/date time fields</strong><br />
+                                <small>For date or datetime fields you can search for distances from the current date in the following ways</small><br /><br />
+                                <ul>
+                                    <li>If you search for: <strong>&gt;-30d</strong><br /><small>Search will return all items where the date is <u>larger than now - 30 days</u></small></li>
+                                    <li>If you search for: <strong>&lt;30d</strong><br /><small>Search will return all items where the date is <u>smaller than now + 30 days</u></small></li>
+                                    <li><small>y = years, M = months, w = weeks, d = days, h = hours and m = minutes</small></li>
+                                </ul><br /><br />
+
+                                <strong>Multiple searches in same field</strong><br />
+                                <small>The system supports following boolean operators for making multiple queries in the same field</small>
+                                <br /><br />
+                                <ul>
+                                    <li>(AND) If you search for: <strong>[query1]&amp;&amp;[query2]</strong><br /><small>Search will return all items where the value is included in both query1 <u>and</u> query2</small></li>
+                                    <li>(OR) If you search for: <strong>[query1]||[query2]</strong><br /><small>Search will return all items where the value is included either in query1 <u>or</u> query2</small></li>
+                                </ul><br /><br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pim-overlay-drawer" ng-class="{'-auto-height': model.confirmSubmit.show}">
+        <div class="pim-overlay-drawer__align-right">
+            <button type="button" class="btn btn-link" ng-click="closeOverLay()" ng-disabled="false"><localize key="general_close"></localize></button>
+        </div>
+    </div>
+</ng-form>

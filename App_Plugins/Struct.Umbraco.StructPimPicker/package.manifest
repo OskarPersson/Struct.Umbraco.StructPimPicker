@@ -1,0 +1,102 @@
+﻿{
+  "propertyEditors": [
+    {
+      "name": "Struct PIM Picker",
+      "alias": "Struct.Umbraco.StructPimPicker",
+      "editor": {
+        "view": "~/App_Plugins/Struct.Umbraco.StructPimPicker/views/pim.picker.html",
+        "valueType": "JSON"
+      },
+      "group": "Pickers",
+      "icon": "icon-box",
+      "prevalues": {
+        "fields": [
+          {
+            "label": "Allow Category Selection",
+            "description": "Choose if categories can be selected",
+            "key": "AllowProductGroupSelection",
+            "view": "boolean"
+          },
+          {
+            "label": "Active catalogue",
+            "description": "Choose which catalogue categories can be selected from. If none selected, master will be used.",
+            "key": "DefaultCatalogue",
+            "view": "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/prevalueEditor/catalogueSelect/catalogueSelect.html"
+          },
+          {
+            "label": "Allow Product Selection",
+            "description": "Choose if products can be selected",
+            "key": "AllowProductSelection",
+            "view": "boolean"
+          },
+          {
+            "label": "Allow Variant Selection",
+            "description": "Choose if variants can be selected",
+            "key": "AllowVariantSelection",
+            "view": "boolean"
+          },
+          {
+            "label": "Allow Variant Group Selection",
+            "description": "Choose if variant groups can be selected",
+            "key": "AllowVariantGroupSelection",
+            "view": "boolean"
+          },
+          {
+            "label": "Allow Product collection Selection",
+            "description": "Choose if collections with products can be selected",
+            "key": "AllowProductCollectionSelection",
+            "view": "boolean"
+          },
+          {
+            "label": "Allow Variant vollection Selection",
+            "description": "Choose if collections with variants can be selected",
+            "key": "AllowVariantCollectionSelection",
+            "view": "boolean"
+          },
+          {
+            "label": "Allow multiple",
+            "description": "Choose if multiple items can be picked",
+            "key": "AllowMultiple",
+            "view": "boolean"
+          }
+        ]
+      }
+    }
+  ],
+  "css": [
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/css/struct.pim.css"
+  ],
+  "javascript": [
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/services/product.service.js",
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/services/media.service.js",
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/services/variantgroup.service.js",
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/services/collections.service.js",
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/services/catalogue.service.js",
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/services/pimsearch.service.js",
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/services/UmbracoHelper.Service.js",
+    
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/Overlay/structpimoverlayhelper.service.js",
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/Overlay/structpimModal.service.js",
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/Overlay/structpimoverlay.directive.js",
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/Overlay/structpiminlineoverlay.directive.js",
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/Overlay/pimoverlaybackdrop.directive.js",
+    
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/LoadIndicator/structloadinicator.directive.js",
+    
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/categorySelect/categorySelect.directive.js",
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/collectionSelect/collection.select.directive.js",
+    
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/pimSearch/pimsearch.js",
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/pimSearch/pimsearchtable.js",
+    
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/PIMPicker/js/pim.picker.js",
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/PIMPicker/js/pim.picker.dialog.controller.js",
+    
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/prevalueEditor/catalogueSelect/catalogueSelect.controller.js",
+    
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/dialogs/pimsearchViewSettingsDialog.controller.js",
+    
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/setup.js",
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/pim.picker.js"
+  ]
+}

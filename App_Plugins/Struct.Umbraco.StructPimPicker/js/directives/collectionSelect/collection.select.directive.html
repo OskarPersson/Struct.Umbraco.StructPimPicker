@@ -1,0 +1,58 @@
+﻿<div>
+    <umb-load-indicator ng-if="loaded == false">
+    </umb-load-indicator>
+
+    <div class="card" ng-show="loaded">
+        <div class="card card-body">
+
+            <div class="tabbable tabs-left">
+
+                <ul class="nav nav-tabs pim-nav-tabs">
+                    <li class="pim-nav-tab__item active">
+                        <a class="pim-nav-tab__link">
+                            <span class="pim-nav-tab__icon"><i class="pim-icon pim-icon-folder-collection"></i></span>
+                            <span class="pim-nav-tab__title">Collections</span>
+                            <span class="pim-nav-tab__meta">
+                                <span class="pim-badge pim-badge--xs" ng-class="{ 'pim-badge--warning':numSelections > 0 }">{{numSelections}}</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content flx-g1">
+                    <div class="tab-pane pim-tab-pane active" id="categoriesoverview">
+                        <ul class="pim-tree" section="StructPIM">
+                            <li class="root">
+                                <ul>
+                                    <li class="has-children" ng-repeat="subItem in rootItems" ng-include="'collectionTree'" ng-init="depth = 1" ng-class="{'is-selected': isItemSelected(rootItem)}"></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/ng-template" id="collectionTree">
+                <div ng-style="{'padding-left': depth * 20 + 'px'}">
+
+                    <ins class="icon-navigation-right" ng-show="subItem.IsOpen != true && subItem.HasChildren" ng-click="showChildren(subItem)">&nbsp;</ins>
+                    <ins class="icon-navigation-down" ng-show="subItem.IsOpen == true && subItem.HasChildren" ng-click="hideItemChildren(subItem)">&nbsp;</ins>
+                    <i class="pim-icon pim-icon-folder-collection pim-tree-icon" ng-show="subItem.Type === 'Folder' && !isItemSelected(subItem)" ng-click="toggleItemSelection(subItem)"></i>
+                    <i class="pim-icon pim-icon-collection-item pim-tree-icon" ng-show="(subItem.Type === 'Product' || subItem.Type === 'Variant') && !isItemSelected(subItem)" ng-click="toggleItemSelection(subItem)"></i>
+
+                    <div class="pim-tree-icon-wrap" ng-show="isItemSelected(subItem)" ng-click="toggleItemSelection(subItem)">
+                        <i class="pim-icon pim-icon-folder-collection pim-tree-icon" ng-show="subItem.Type === 'Folder'"></i>
+                        <i class="pim-icon pim-icon-collection-item pim-tree-icon" ng-show="subItem.Type === 'Product' || subItem.Type === 'Variant'"></i>
+                        <i class="pim-icon pim-icon-f-check pim-tree-icon--check"></i>
+                    </div>
+
+                    <a class="pim-tree-item__label" href="" ng-click="toggleItemSelection(subItem)">{{subItem.Name}} &nbsp;</a>
+                </div>
+                <ul ng-if="subItem.Children">
+                    <li ng-repeat="subItem in subItem.Children" ng-include="'collectionTree'" ng-init="depth = depth + 1" ng-class="{'is-selected': isItemSelected(subItem)}">
+                    </li>
+                </ul>
+            </script>
+
+        </div>
+    </div>
+</div>

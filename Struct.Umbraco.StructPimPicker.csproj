@@ -1,0 +1,133 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="compilerconfig.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include=".Base\Handlers\CompressAttribute.cs" />
+    <Compile Include=".Base\Handlers\CompressedContent.cs" />
+    <Compile Include=".Base\StructPIMSettings.cs" />
+    <Compile Include="App_Plugins\Struct.Umbraco.StructPimPicker\ApiControllers\CatalogueApiController.cs" />
+    <Compile Include="App_Plugins\Struct.Umbraco.StructPimPicker\ApiControllers\CollectionApiController.cs" />
+    <Compile Include="App_Plugins\Struct.Umbraco.StructPimPicker\ApiControllers\PimSearchApiController.cs" />
+    <Compile Include="App_Plugins\Struct.Umbraco.StructPimPicker\ApiControllers\ProductApiController.cs" />
+    <Compile Include="App_Plugins\Struct.Umbraco.StructPimPicker\ApiControllers\StructPIMApiController.cs" />
+    <Compile Include="App_Plugins\Struct.Umbraco.StructPimPicker\Models\Shared\DetailedListConfiguration.cs" />
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\dialogs\pimsearchHelpDialog.html" />
+    <Compile Include="App_Plugins\Struct.Umbraco.StructPimPicker\Models\Catalogue\CategoryRequestModel.cs" />
+    <Compile Include="App_Plugins\Struct.Umbraco.StructPimPicker\Models\Catalogue\CategoryModel.cs" />
+    <Compile Include="App_Plugins\Struct.Umbraco.StructPimPicker\Models\Collection\CollectionTreeModel.cs" />
+    <Compile Include="App_Plugins\Struct.Umbraco.StructPimPicker\Models\Collection\CollectionRequestModel.cs" />
+    <Compile Include="App_Plugins\Struct.Umbraco.StructPimPicker\Models\Collection\CollectionTreeRequestModel.cs" />
+    <Compile Include="App_Plugins\Struct.Umbraco.StructPimPicker\Models\Shared\BaseRequestModel.cs" />
+    <Compile Include=".Base\UmbracoHelper.cs" />
+    <Compile Include="App_Plugins\Struct.Umbraco.StructPimPicker\Models\Shared\ListConfigurationModel.cs" />
+    <Compile Include="App_Plugins\Struct.Umbraco.StructPimPicker\Models\Shared\SearchDefinition.cs" />
+    <Compile Include="App_Plugins\Struct.Umbraco.StructPimPicker\Models\Shared\SearchModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\struct.pim.css" />
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\struct.pim.min.css" />
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\fonts\fonts\pim-icon.eot" />
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\fonts\fonts\pim-icon.ttf" />
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\fonts\fonts\pim-icon.woff" />
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\fonts\selection.json" />
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\fonts\style.css" />
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\fonts\style.min.css" />
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\dialogs\pimsearchViewSettingsDialog.html" />
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\directives\categorySelect\categorySelect.directive.html" />
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\directives\collectionSelect\collection.select.directive.html" />
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\directives\Overlay\struct-pim-overlay.html" />
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\directives\PIMPicker\views\pickerDialog.html" />
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\directives\PIMPicker\views\pim.picker.html" />
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\directives\pimSearch\pimsearch.html" />
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\directives\pimSearch\pimsearchtable.html" />
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\lang\en-GB.xml" />
+    <Content Include="App_Plugins\Struct.Umbraco.StructPimPicker\views\pim.picker.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.9" />
+    <PackageReference Include="Struct.PIM.Api.Client" Version="3.11.2" />
+    <PackageReference Include="Umbraco.Cms" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Opt-in to app-local ICU to ensure consistent globalization APIs across different platforms -->
+    <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="68.2.0.9" />
+    <PackageReference Include="Umbraco.Cms.Core" Version="10.0.0" />
+    <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="68.2.0.9" Condition="$(RuntimeIdentifier.StartsWith('linux')) or $(RuntimeIdentifier.StartsWith('win')) or ('$(RuntimeIdentifier)' == '' and !$([MSBuild]::IsOSPlatform('osx')))" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\application\_animations.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\application\_grid.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\application\_shadows.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\components\editor\subheader\_pim-editor-sub-header.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\components\overlays\_pim-overlay-backdrop.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\components\_card.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\components\_editor.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\components\_overlays.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\components\_pim-load-indicator.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\components\_pim-relation-picker.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\components\_pim-sortable.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\components\_pim-sub-views.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\components\_pim-table.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\components\_pim-tabs.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\struct.pim.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\_fonts.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\_forms.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\_hacks.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\_mixins.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\_modals.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\_open-color.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\_panel.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\_tree.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\css\_variables.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\fonts\fonts\pim-icon.svg" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\fonts\style.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\fonts\variables.scss" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\dialogs\pimsearchViewSettingsDialog.controller.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\directives\categorySelect\categorySelect.directive.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\directives\collectionSelect\collection.select.directive.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\directives\Overlay\structpimoverlay.directive.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\directives\Overlay\structpimoverlayhelper.service.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\directives\pimSearch\pimsearch.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\directives\pimSearch\pimsearchtable.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\services\language.service.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\setup.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\pim.picker.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\directives\PIMPicker\js\pim.picker.dialog.controller.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\directives\PIMPicker\js\pim.picker.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\prevalueEditor\catalogueSelect\catalogueSelect.html" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\prevalueEditor\catalogueSelect\catalogueSelect.controller.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\services\catalogue.service.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\services\collections.service.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\services\media.service.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\services\pimsearch.service.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\services\product.service.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\services\UmbracoHelper.Service.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\js\services\variantgroup.service.js" />
+    <None Include="App_Plugins\Struct.Umbraco.StructPimPicker\package.manifest" />
+    <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <!-- Razor files are needed for the backoffice to work correctly -->
+    <CopyRazorGenerateFilesToPublishDirectory>true</CopyRazorGenerateFilesToPublishDirectory>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Remove RazorCompileOnBuild and RazorCompileOnPublish when not using ModelsMode InMemoryAuto -->
+    <RazorCompileOnBuild>false</RazorCompileOnBuild>
+    <RazorCompileOnPublish>false</RazorCompileOnPublish>
+  </PropertyGroup>
+  
+</Project>

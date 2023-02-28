@@ -1,0 +1,119 @@
+﻿<div ng-show="!indexIsUpToDate" data-placement="top" title="The search result may be out of sync, while the items are being updated" style="width:280px; height:30px; background-color:red; position:fixed; right:50px;bottom:0px; z-index:100; font-size:14px; background-color: #eddc85; padding:10px;">
+    <i class="pim-icon pim-icon-c-warning-e" style="color:#967f0b; font-size: 20px; position:relative; top:3px; padding-right:5px;"></i>
+    Some items are currently being updated
+</div>
+
+<div class="row" style="height: 1px;">
+    <div ng-show="searching" class="wait-slider-container" style="z-index: 10">
+        <div class="wait-slider">
+        </div>
+    </div>
+</div>
+
+<div class="pim-table">
+    <div class="pim-table-header">
+        <div class="pim-table-header-left">
+            <h5><small class="mr1"><localize key="structUmbracoStructPimPicker_total"></localize></small>{{searchResult.TotalHits}}</h5>
+        </div>
+        <div class="pim-table-header-right">
+            <button type="button" class="btn btn-small btn-transparent" title="Reset search" ng-show="model.searchDefinition.Query.SubQueries[0].SubQueries.length>0" ng-click="clearSearch()" data-placement="top"><i class="pim-icon pim-icon-reload"></i></button>
+            <span class="separator ml3 mr-3"></span>
+            <button type="button" ng-disabled="searchResult.Page == 1" ng-click="goToPage(1)" style="margin-right: 5px;" class="btn btn-small btn-link"><i class="icon icon-navigation-first"></i></button>
+            <button type="button" ng-disabled="searchResult.Page == 1" ng-click="goToPage(searchResult.Page - 1)" class="btn btn-small btn-link" style="margin-right: 30px;"><i class="pim-icon pim-icon-small-left"></i></button>
+            <span class="u-text--small">Page {{searchResult.Page}} of {{searchResult.TotalPages}} | <localize key="structUmbracoStructPimPicker_totalHits"></localize>: {{searchResult.TotalHits}}</span>
+            <button type="button" ng-disabled="searchResult.Page == searchResult.TotalPages" ng-click="goToPage(searchResult.Page + 1)" style="margin-left: 30px;" class="btn btn-small btn-link"><i class="pim-icon pim-icon-small-right"></i></button>
+            <button type="button" ng-disabled="searchResult.Page == searchResult.TotalPages" ng-click="goToPage(searchResult.TotalPages)" style="margin-left: 5px;" class="btn btn-small btn-link"><i class="icon icon-navigation-last"></i></button>
+        </div>
+    </div>
+    <div class="pim-table-head">
+        <div class="pim-table-row">
+            <div class="pim-table-cell overflow-visible" style="flex: 0 0 52px; margin-left: 23px; padding: 5px 0;">
+                <div id="itemSelector" ng-show="config.allowMultipleSelections">
+                    <div class="btn-group">
+                        <!--<button type="button" class="btn" ng-click="selectAll()">All</button>-->
+                    </div>
+
+                </div>
+            </div>
+            <div style="padding: 5px 0;" class="pim-table-cell overflow-visible" ng-repeat="header in searchResult.ItemListHeaders">
+                <div class="pim-column-actions">
+                    <div class="pim-floating-label-input__wrapper" ng-if="header.SupportsSearching == true">
+                        <div class="pim-floating-label-input__data">
+                            <input type="text" class="pim-floating-label-input__input" ng-disabled="searching && autoSearch == false" ng-keypress="searchOnEnter($event)" no-dirty-check ng-change="searchOnTimeout()" ng-model="viewModel.directSearch[header.FieldUid]">
+                            <a ng-click="focusOnInput($event)" class="pim-floating-label-input__search-icon">
+                                <i class="pim-icon pim-icon-search" title="Search"></i>
+                            </a>
+
+                            <a class="pim-floating-label-input__clear" ng-show="viewModel.directSearch[header.FieldUid].length > 0">
+                                <i class="pim-icon pim-icon-d-remove" title="" ng-click="viewModel.directSearch[header.FieldUid] = ''; search()"></i>
+                            </a>
+                            <div class="pim-floating-label-input__underline"></div>
+                            <label class="pim-floating-label-input__label" title="{{header.FieldName}}"><span>{{header.FieldName}}</span></label>
+                        </div>
+                    </div>
+
+                    <a class="pim-column-sorting__wrapper" ng-click="changeSorting(header)">
+                        <i class="pim-icon pim-icon-triangle-up pim-column-sorting__icon" ng-class="{'is-active':model.searchDefinition.SortByFieldUid == header.FieldUid && model.searchDefinition.SortDescending == false}" title="Up"></i>
+                        <i class="pim-icon pim-icon-triangle-down pim-column-sorting__icon" ng-class="{'is-active':model.searchDefinition.SortByFieldUid == header.FieldUid && model.searchDefinition.SortDescending == true}" title="Down"></i>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="pim-table-body">
+        <div ng-show="searchResult.TotalHits == 0" style="margin:5px; padding: 40px; border:1px dashed lightgray; text-align:center">
+            <svg width="48" height="48" viewBox="0 0 64 64"><title>t-warning</title><g stroke-linecap="square" stroke-linejoin="miter" stroke-width="3" transform="translate(0.5 0.5)" fill="#000000" stroke="#000000"><polygon points="3 58 32 6 61 58 3 58" fill="none" stroke="#000000" stroke-miterlimit="10"></polygon><line x1="32" y1="23" x2="32" y2="42" fill="none" stroke-miterlimit="10"></line><circle cx="32" cy="49" r="1" fill="none" stroke-miterlimit="10"></circle></g></svg>
+            <h4>Nothing matched your search query</h4>
+            <span>Please refine your search</span>
+        </div>
+        <div ng-show="searchResult.TotalHits > 0">
+            <div class="pim-table-row selectable" ng-class="{'-selected': isItemSelected(listItem.Id)}" ng-repeat="listItem in searchResult.ListItems">
+                <div ng-click="toggleItemSelection(listItem.Id)" class="pim-table-cell" style="flex: 0 0 70px; margin-left: 5px;">
+                    <i ng-show="!isItemSelected(listItem.Id) && model.searchDefinition.EntityType == 'Category'" class="pim-table-body__icon pim-icon pim-icon-folder-outline-items"></i>
+                    <i ng-show="!isItemSelected(listItem.Id) && model.searchDefinition.EntityType == 'Product'" class="pim-table-body__icon pim-icon pim-icon-product"></i>
+                    <i ng-show="!isItemSelected(listItem.Id) && model.searchDefinition.EntityType == 'Variant'" class="pim-table-body__icon pim-icon pim-icon-variant"></i>
+                    <i ng-show="!isItemSelected(listItem.Id) && model.searchDefinition.EntityType == 'VariantGroup'" class="pim-table-body__icon pim-icon pim-icon-variant-groups"></i>
+                    <i ng-show="isItemSelected(listItem.Id)" class="pim-table-body__icon pim-icon-f-check"></i>
+                </div>
+                <div class="pim-table-cell" ng-repeat="value in listItem.ShownValues track by $index" ng-click="isSelecting || goToItem(listItem)">
+                    <div ng-if="::searchResult.ItemListHeaders[$index].FieldType==='tableMediaRenderer'">
+                        {{::value}}
+                        <!--<pim-thumbnail medias="value"></pim-thumbnail>-->
+                    </div>
+                    <div ng-if="::searchResult.ItemListHeaders[$index].FieldType==='tablePercentageRenderer'">
+                        {{::value}}
+                        <!--<div ng-if="::(value.length > 0)" class="progress-circle p{{::value}}" ng-class="{'over50': value > 50, 'from0-20': (value > 0 && value <= 20), 'from20-40': (value > 20 && value <= 40), 'from40-60': (value > 40 && value <= 60), 'from60-80': (value > 60 && value <= 80), 'from80-100': value > 80}">
+                            <span> {{::value}}%</span>
+                            <div class="left-half-clipper">
+                                <div class="first50-bar"></div>
+                                <div class="value-bar"></div>
+                            </div>
+                        </div>
+                        <div ng-if="::(value.length == 0)" class="progress-circle p{{::value}}">
+                            <span> N/A</span>
+                            <div class="left-half-clipper">
+                                <div class="first50-bar"></div>
+                                <div class="value-bar"></div>
+                            </div>
+                        </div>-->
+                    </div>
+                    <span title="{{::value}}" ng-if="::(searchResult.ItemListHeaders[$index].FieldType!='tableMediaRenderer' && searchResult.ItemListHeaders[$index].FieldType!='tablePercentageRenderer')">
+                        {{::value}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pim-table-foot">
+        <div class="pim-table-foot-right">
+            <button type="button" ng-disabled="searchResult.Page == 1" ng-click="goToPage(1)" style="margin-right: 5px;" class="btn btn-small btn-link"><i class="icon icon-navigation-first"></i></button>
+            <button type="button" ng-disabled="searchResult.Page == 1" ng-click="goToPage(searchResult.Page - 1)" class="btn btn-small btn-link" style="margin-right: 30px;"><i class="pim-icon pim-icon-small-left"></i></button>
+            <span class="u-text--small">Page {{searchResult.Page}} of {{searchResult.TotalPages}} | <localize key="structUmbracoStructPimPicker_totalHits"></localize>: {{searchResult.TotalHits}}</span>
+            <button type="button" ng-disabled="searchResult.Page == searchResult.TotalPages" ng-click="goToPage(searchResult.Page + 1)" style="margin-left: 30px;" class="btn btn-small btn-link"><i class="pim-icon pim-icon-small-right"></i></button>
+            <button type="button" ng-disabled="searchResult.Page == searchResult.TotalPages" ng-click="goToPage(searchResult.TotalPages)" style="margin-left: 5px;" class="btn btn-small btn-link"><i class="icon icon-navigation-last"></i></button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿<ul class="pim-relation-picker pim-picker-sortable">
+
+    <li class="pim-relation-picker__item" ng-repeat="item in $ctrl.ngModel track by $index" title="{{item.ItemName}}" data-placement="top">
+        <div class="pim-relation-picker__item-title">
+            <span class="ng-binding">{{item.ItemName}}</span>
+        </div>
+
+        <i ng-if="item.ReferenceType == 10" style="font-size:40px; color:#A2A1A6;" class="pim-icon pim-icon-folder-outline-items"></i>
+        <i ng-if="item.ReferenceType == 20" style="font-size:40px; color:#A2A1A6;" class="pim-icon pim-icon-product"></i>
+        <i ng-if="item.ReferenceType == 30" style="font-size:40px; color:#A2A1A6;" class="pim-icon pim-icon-variant"></i>
+        <i ng-if="item.ReferenceType == 40" style="font-size:40px; color:#A2A1A6;" class="pim-icon pim-icon-collection-item-lg"></i>
+        <i ng-if="item.ReferenceType == 60" style="font-size:40px; color:#A2A1A6;" class="pim-icon pim-icon-variant-groups"></i>
+        <div class="pim-relation-picker__actions">
+
+            <a class="pim-relation-picker__action">
+                <i class="pim-icon pim-icon-move pim-relation-picker__item-icon"></i>
+            </a>
+            <a class="pim-relation-picker__action ml-auto" ng-if="!$ctrl.isDisabled" ng-click="$ctrl.removeItem(item)">
+                <i class="pim-icon pim-icon-d-remove color-red pim-relation-picker__item-icon"></i>
+            </a>
+
+        </div>
+    </li>
+    <li class="pim-relation-picker__item-add" ng-show="!$ctrl.isDisabled && ($ctrl.ngModel.length == 0 || $ctrl.allowMultiple)">
+        <a class="pim-relation-picker__item-add-link" ng-click="$ctrl.openDialog()">
+            <i class="pim-icon pim-icon-e-add pim-icon-32"></i>
+        </a>
+    </li>
+</ul>
+
+<struct-umbraco-struct-pim-picker-overlay ng-if="$ctrl.overlay.show"
+                    model="$ctrl.overlay"
+                    view="$ctrl.overlay.view"
+                    position="right"
+                    class="pim-overlay--full">
+</struct-umbraco-struct-pim-picker-overlay>

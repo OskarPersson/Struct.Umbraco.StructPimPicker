@@ -1,0 +1,79 @@
+﻿<div class="pim-overlay__form" ng-controller="Struct.Umbraco.StructPimPicker.ViewSettingsDialog.controller">
+
+    <div class="pim-overlay-header">
+        <div class="pim-overlay-header__left-content">
+            <h4 class="pim-overlay__title">Columns</h4>
+            <p class="pim-overlay__subtitle"><localize key="structUmbracoStructPimPicker_selectDataFieldsDescription"></localize></p>
+        </div>
+    </div>
+
+    <div class="row" ng-show="!loaded || reloading">
+        <div class="wait-slider-container">
+            <div class="wait-slider">
+            </div>
+        </div>
+    </div>
+    <div class="pim-overlay-container form-horizontal bg-gray-10">
+
+        <div class="pim-property" ng-show="mode!='saveAs' && loaded">
+            <div class="card">
+                <div class="card-body">
+                    <div class="control-group pim-control-group">
+                        <div class="pim-el-wrap">
+                            <label class="control-label">
+                                <localize key="structUmbracoStructPimPicker_shownDataFields"></localize>
+                                <small class="pim-detail"><localize key="structUmbracoStructPimPicker_shownDataFieldsDescription"></localize></small>
+                            </label>
+                            <div class="controls controls-row">
+                                <div>
+                                    <div class="dataFieldsAsSortable">
+                                        <div ng-repeat="dataField in listConfiguration.DataFields">
+                                            <div class="flex" style="border:1px solid lightgray; margin-bottom:3px; background-color:white;" ng-if="dataField.editMode != true">
+                                                <div style="flex-grow:1; line-height:32px; padding-left:10px;">
+                                                    <i class="pim-icon pim-icon-drag-handle" style="color:gray; position:relative; top:3px; padding-right:10px; cursor:ns-resize;"></i>
+                                                    <span>{{dataField.Name}}</span>
+                                                </div>
+                                                <div style="flex-grow:0">
+                                                    <button class="btn btn-link" style="padding:0px" ng-click="dataField.editMode = true"><i class="pim-icon pim-icon-edit"></i></button>
+                                                    <button class="btn btn-link" style="padding-left:8px; padding-right:10px" ng-click="removeDataField(dataField)"><i class="pim-icon pim-icon-trash"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class="flex" style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap;" ng-if="dataField.editMode == true">
+                                                <div style="flex-grow:1;">
+                                                    <select style="width:100%;margin-bottom:3px;" ng-options="option.Uid as option.Name for option in availableFields" ng-model="dataField.Uid" ng-change="setSelectedDataField(dataField)" ng-required="true">
+                                                    </select>
+                                                </div>
+                                                <div style="flex-grow:0">
+                                                    <button class="btn btn-link" style="padding:0px; padding-left:10px; padding-right:10px;" ng-click="removeDataField(dataField)"><i class="pim-icon pim-icon-trash"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 10px;">
+                                    <button type="button" class="btn btn-secondary" ng-click="addDataField()">
+                                        <i class="icon icon-umb-contour"></i><localize key="structUmbracoStructPimPicker_addDataField"></localize>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="showNotification">
+                            <div style="width: 400px; margin-top:20px; background-color: #46a546; color: #fff; border-radius: 5px; padding: 5px 10px;">
+                                <strong>{{notificationMessage}}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="pim-overlay-drawer">
+        <div class="pim-overlay-drawer__align-right">
+            <small ng-if="showError" style="padding-top:5px;border-right:1px solid #BBBABF; padding-right:20px; color: #d42054">{{errorMessage}}</small>
+            <button type="button" ng-click="model.close()" class="btn btn-link"><localize key="general_cancel"></localize></button>
+            <button type="button" class="btn btn-success" ng-disabled="!validate()" ng-click="updateShownDataFields()"><localize key="general_ok"></localize></button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,69 @@
+﻿<div>
+    <umb-load-indicator ng-if="loaded == false">
+    </umb-load-indicator>
+
+    <div class="card" ng-show="loaded">
+        <div class="card card-body">
+            <div class="tabbable tabs-left">
+
+                <ul class="nav nav-tabs pim-nav-tabs">
+                    <li class="pim-nav-tab__item active">
+                        <a class="pim-nav-tab__link">
+                            <span class="pim-nav-tab__icon"><i class="pim-icon pim-icon-product-hierarchies"></i></span>
+                            <span class="pim-nav-tab__title">Categories</span>
+                            <span class="pim-nav-tab__meta">
+                                <span class="pim-badge pim-badge--xs" ng-class="{ 'pim-badge--warning':numSelections > 0 }">{{numSelections}}</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content flx-g1">
+                    <div class="tab-pane pim-tab-pane active" id="categoriesoverview">
+                        <ul class="pim-tree" section="StructPIM">
+                            <li class="root">
+                                <ul>
+                                    <li class="has-children" ng-repeat="catalogue in catalogues" ng-class="{'is-selected': isCatalogueSelected(catalogue)}">
+                                        <div style="padding-left:16px;">
+                                            <ins class="icon-navigation-right" ng-show="catalogue.IsOpen != true" ng-click="showCatalogueChildren(catalogue)">&nbsp;</ins>
+                                            <ins class="icon-navigation-down" ng-show="catalogue.IsOpen == true" ng-click="hideCatalogueChildren(catalogue)">&nbsp;</ins>
+                                            <i class="pim-icon pim-icon-product-hierarchies pim-tree-icon" title="" ng-show="!isCatalogueSelected(catalogue)" ng-click="toggleCatalogueSelection(catalogue)"></i>
+                                            <div class="pim-tree-icon-wrap" ng-show="isCatalogueSelected(catalogue)" ng-click="toggleCatalogueSelection(catalogue)">
+                                                <i class="pim-icon pim-icon-folder-outline pim-tree-icon"></i>
+                                                <i class="pim-icon pim-icon-f-check pim-tree-icon--check"></i>
+                                            </div>
+                                            <strong><a class="pim-tree-item__label" href="" ng-click="toggleCatalogueSelection(catalogue)">{{catalogue.Label}} &nbsp;</a></strong>
+                                        </div>
+                                        <ul ng-if="catalogue.SubCategories">
+                                            <li ng-repeat="subCategory in catalogue.SubCategories" ng-include="'categoryTree'" ng-init="depth = 2" ng-class="{'is-selected': isCategorySelected(subCategory)}">
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/ng-template" id="categoryTree">
+                <div ng-style="{'padding-left': depth * 20 + 'px'}">
+                    <ins class="icon-navigation-right" ng-show="subCategory.IsOpen != true && subCategory.HasChildren && !isCategoryExcluded(subCategory.Id)" ng-click="showCategoryChildren(subCategory)">&nbsp;</ins>
+                    <ins class="icon-navigation-down" ng-show="subCategory.IsOpen == true && subCategory.HasChildren && !isCategoryExcluded(subCategory.Id)" ng-click="hideCategoryChildren(subCategory)">&nbsp;</ins>
+                    <i ng-if="!subCategory.Dynamic" class="pim-icon pim-icon-folder-outline-items pim-tree-icon" ng-style="{'color': isCategoryExcluded(subCategory.Id) ? 'lightgrey':''}" title="" ng-show="!isCategorySelected(subCategory)" ng-click="toggleCategorySelection(subCategory)"></i>
+                    <i ng-if="subCategory.Dynamic" class="pim-icon pim-icon pim-icon-dynamic-category pim-tree-icon" ng-style="{'color': isCategoryExcluded(subCategory.Id) ? 'lightgrey':''}" title="" ng-show="!isCategorySelected(subCategory)" ng-click="toggleCategorySelection(subCategory)"></i>
+                    <div class="pim-tree-icon-wrap" ng-show="isCategorySelected(subCategory)" ng-click="toggleCategorySelection(subCategory)">
+                        <i ng-if="!subCategory.Dynamic" class="pim-icon pim-icon-folder-outline pim-tree-icon"></i>
+                        <i ng-if="subCategory.Dynamic" class="pim-icon pim-icon pim-icon-dynamic-category pim-tree-icon"></i>
+                        <i class="pim-icon pim-icon-f-check pim-tree-icon--check"></i>
+                    </div>
+                    <a class="pim-tree-item__label" href="" ng-style="{'color': isCategoryExcluded(subCategory.Id) ? 'lightgrey':''}" ng-click="toggleCategorySelection(subCategory)">{{subCategory.Name}} &nbsp;</a>
+                </div>
+                <ul ng-if="subCategory.SubCategories">
+                    <li ng-repeat="subCategory in subCategory.SubCategories" ng-include="'categoryTree'" ng-init="depth = depth + 1" ng-class="{'is-selected': isCategorySelected(subCategory)}">
+                    </li>
+                </ul>
+            </script>
+
+        </div>
+    </div>
+</div>

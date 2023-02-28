@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language>
+  <creator>
+    <name>Struct A/S</name>
+    <link>http://struct.com</link>
+  </creator>
+  <area alias="structUmbracoStructPimPicker">
+    <key alias="viewSettings">View settings</key>
+    <key alias="page">Page</key>
+    <key alias="noOfItems">Total</key>
+    <key alias="next">Next</key>
+    <key alias="back">Back</key>
+    <key alias="previous">Previous</key>
+    <key alias="noResults">No results matched your search criteria...</key>
+    <key alias="totalHits">Total hits</key>
+    <key alias="total">Total</key>
+    <key alias="headline">Struct PIM Item Picker</key>
+    <key alias="description">Select items from Struct PIM</key>
+    <key alias="productsAndVariants">Products and Variants</key>
+    <key alias="categories">Categories</key>
+    <key alias="collections">Collections</key>
+    <key alias="selected">selected</key>
+    <key alias="whatToSearch">What to search</key>
+    <key alias="selectDataFields">Columns</key>
+    <key alias="selectDataFieldsDescription">Select the columns you want to see in the search list</key>
+    <key alias="shownDataFields">Shown data fields</key>
+    <key alias="shownDataFieldsDescription">Select the data fields, you want to be shown in the search result list</key>
+    <key alias="addDataField">Add data field</key>
+  </area>
+</language>

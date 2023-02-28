@@ -1,0 +1,85 @@
+﻿<ng-form name="pickerForm" class="pim-panel pim-editor-wrapper" ng-controller="Struct.Umbraco.StructPimPicker.ItemPickerDialog.controller">
+
+    <div class="pim-editor-header pim-panel-header">
+        <div class="pim-panel-header-content-wrapper">
+            <div class="pim-panel-header-content">
+                <div class="pim-panel-header-left-side">
+                    <div class="pim-panel-header-icon">
+                        <i class="pim-icon pim-icon-settings pim-icon-32"></i>
+                    </div>
+                    <div class="pim-panel-header-title-wrapper">
+                        <div class="pim-panel-header-name">
+                            <localize key="structUmbracoStructPimPicker_headline">Struct PIM Item Picker</localize>
+                        </div>
+                        <div class="pim-panel-header-locked-description">
+                            <localize key="structUmbracoStructPimPicker_description"></localize>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pim-panel-tab-navigation">
+        <!--tabs definition-->
+        <ul class="nav nav-tabs pim-nav-tabs" role="tablist">
+            <li role="presentation" ng-show="controlModel.showProductsAndVariants" class="{{controlModel.activeTab == 'productVariant' ? 'active' : ''}}">
+                <a data-toggle="tab" ng-click="controlModel.activeTab = 'productVariant'"><localize key="structUmbracoStructPimPicker_productsAndVariants"></localize></a>
+            </li>
+            <li role="presentation" ng-show="controlModel.showCatalogue" class="{{controlModel.activeTab == 'catalogue' ? 'active' : ''}}">
+                <a data-toggle="tab" ng-click="controlModel.activeTab = 'catalogue'"><localize key="structUmbracoStructPimPicker_categories"></localize></a>
+            </li>
+            <li role="presentation" ng-show="controlModel.showCollection" class="{{controlModel.activeTab == 'collection' ? 'active' : ''}}">
+                <a data-toggle="tab" ng-click="controlModel.activeTab = 'collection'"><localize key="structUmbracoStructPimPicker_collections"></localize></a>
+            </li>
+        </ul>
+    </div>
+    <!--tabs container-->
+    <div class="pim-editor-container pim-panel-body pim-scrollable row-fluid" auto-scale="1">
+
+        <div class="tab-content form-horizontal">
+
+            <div id="productsandvariants" class="pim-tab-pane tab-pane {{controlModel.activeTab == 'productVariant' ? 'active' : ''}}" ng-if="controlModel.showProductsAndVariants">
+                <div class="pim-pane">
+                    <struct-umbraco-struct-pim-picker-pim-search selected-items="selectedProductAndVariants" default-filter="controlModel.pimSearch.defaultFilter" allowed-types="controlModel.pimSearch.allowedTypes" hide-actions="true" disable-item-link="true" allow-multiple-selections="model.AllowMultiple" list-scope="pimpicker"></struct-umbraco-struct-pim-picker-pim-search>
+                </div>
+            </div>
+
+            <div id="catalogue" class="pim-tab-pane tab-pane {{controlModel.activeTab == 'catalogue' ? 'active' : ''}}" ng-if="controlModel.showCatalogue">
+                <div class="pim-pane">
+                    <div class="card" style="margin-bottom:20px;">
+                        <div class="card-body pim-form-layout">
+                            <div class="pim-form-layout__wrapper">
+                                <struct-umbraco-struct-pim-picker-category-select only-master="model.OnlyMaster" only-this-catalogue="model.DefaultCatalogue" allow-catalogue-select="false" allow-multiple="model.AllowMultiple" allow-dynamic="true" ng-model="selectedCategories"></struct-umbraco-struct-pim-picker-category-select>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="collection" class="pim-tab-pane tab-pane {{controlModel.activeTab == 'collection' ? 'active' : ''}}" ng-if="controlModel.showCollection">
+                <div class="pim-pane">
+                    <div class="card" style="margin-bottom:20px;">
+                        <div class="card-body pim-form-layout">
+                            <div class="pim-form-layout__wrapper">
+                                <struct-umbraco-struct-pim-picker-collection-select ng-model="selectedCollections" allow-product-collection="model.AllowProductCollectionSelection" allow-variant-collection="model.AllowVariantCollectionSelection" allow-folder="false" allow-multiple="model.AllowMultiple"></struct-umbraco-struct-pim-picker-collection-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="pim-editor-drawer">
+        <div class="pim-editor-drawer-content">
+            <div class="pim-editor-drawer-content__right-side">
+                <button href="" class="btn btn-link" ng-click="cancel()">Cancel</button>
+                <button href="" class="btn btn-success" ng-click="submitSelection()" ng-disabled="false">OK</button>
+            </div>
+        </div>
+    </div>
+</ng-form>
