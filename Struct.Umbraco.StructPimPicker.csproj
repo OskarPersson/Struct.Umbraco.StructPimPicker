@@ -11,6 +11,7 @@
     <_ContentIncludedByDefault Remove="compilerconfig.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include=".Base\Editors\StructPimPickerValueConverter.cs" />
     <Compile Include=".Base\Handlers\CompressAttribute.cs" />
     <Compile Include=".Base\Handlers\CompressedContent.cs" />
     <Compile Include=".Base\StructPIMSettings.cs" />
