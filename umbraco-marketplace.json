@@ -1,0 +1,9 @@
+{
+  "AuthorDetails": {
+    "Description": "Struct A/S",
+    "Url": "https://struct.com/"
+  },
+  "Category": "PIM & DAM",
+  "LicenseType": "Free",
+  "PackageType": "Integration"
+}
