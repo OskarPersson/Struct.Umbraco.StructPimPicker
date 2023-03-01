@@ -12,17 +12,23 @@
       "prevalues": {
         "fields": [
           {
-            "label": "Allow Category Selection",
-            "description": "Choose if categories can be selected",
-            "key": "AllowProductGroupSelection",
-            "view": "boolean"
-          },
-          {
             "label": "Active catalogue",
             "description": "Choose which catalogue categories can be selected from. If none selected, master will be used.",
             "key": "DefaultCatalogue",
             "view": "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/prevalueEditor/catalogueSelect/catalogueSelect.html"
           },
+          {
+            "label": "Allow multiple",
+            "description": "Choose if multiple items can be picked",
+            "key": "AllowMultiple",
+            "view": "boolean"
+          },
+          {
+            "label": "Allow Category Selection",
+            "description": "Choose if categories can be selected",
+            "key": "AllowProductGroupSelection",
+            "view": "boolean"
+          },          
           {
             "label": "Allow Product Selection",
             "description": "Choose if products can be selected",
@@ -52,19 +58,13 @@
             "description": "Choose if collections with variants can be selected",
             "key": "AllowVariantCollectionSelection",
             "view": "boolean"
-          },
-          {
-            "label": "Allow multiple",
-            "description": "Choose if multiple items can be picked",
-            "key": "AllowMultiple",
-            "view": "boolean"
-          }
+          }          
         ]
       }
     }
   ],
   "css": [
-    "~/App_Plugins/Struct.Umbraco.StructPimPicker/css/struct.pim.css"
+    "~/App_Plugins/Struct.Umbraco.StructPimPicker/css/struct.pim.min.css"
   ],
   "javascript": [
     "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/services/product.service.js",
