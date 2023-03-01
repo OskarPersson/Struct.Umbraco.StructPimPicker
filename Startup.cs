@@ -2,7 +2,7 @@
 
 using Struct.Umbraco.StructPimPicker._Base;
 
-namespace Umbraco.Cms.Integrations.PIM.StructPIM
+namespace Struct.Umbraco.StructPimPicker
 {
     public class Startup
     {
@@ -38,8 +38,6 @@ namespace Umbraco.Cms.Integrations.PIM.StructPIM
                 .AddWebsite()
                 .AddComposers()
                 .Build();
-
-            services.Configure<StructPIMSettings>(options => _config.GetSection("StructPIM").Bind(options));
         }
 
         /// <summary>

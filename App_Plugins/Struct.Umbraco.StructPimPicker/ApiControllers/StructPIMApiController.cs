@@ -1,11 +1,9 @@
 ﻿using Microsoft.Extensions.Options;
 using Struct.Umbraco.StructPimPicker._Base;
-using Struct.Umbraco.StructPimPicker._Base.Handlers;
 using Umbraco.Cms.Web.BackOffice.Controllers;
 
 namespace Struct.Umbraco.StructPimPicker.ApiControllers
 {
-    [CompressAttribute]
     public class StructPIMApiController : UmbracoAuthorizedJsonController
     {
         protected StructPIMSettings _pimSettings;

@@ -2,12 +2,12 @@
 <package  xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>Struct.Umbraco.StructPimPicker</id>
-    <version>3.1.0</version>
+    <version>1.0.4</version>
     <title>Struct.Umbraco.StructPimPicker</title>
     <authors>Struct A/S</authors>
     <owners>Struct A/S</owners>
-    <projectUrl>https://github.com/umbraco/Umbraco.Cms.Integrations/tree/main/src/Umbraco.Cms.Integrations.PIM.StructPIM</projectUrl>
-    <iconUrl>structpim.png</iconUrl>
+    <projectUrl>https://github.com/StructPim/Struct.Umbraco.StructPimPicker</projectUrl>
+    <icon>PIM-logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>An extension for Umbraco CMS providing a picker for Struct PIM data.</description>
     <releaseNotes></releaseNotes>
@@ -16,25 +16,28 @@
     <tags>Umbraco Umbraco-Marketplace</tags>
     <dependencies>
       <group targetFramework="net6.0">
+        <dependency id="Struct.PIM.Api.Client" version="[3.11.2, 4.0.0)" exclude="Build,Analyzers" />
         <dependency id="Umbraco.Cms.Web.BackOffice" version="[10.3.0, 12.0.0)" exclude="Build,Analyzers" />
         <dependency id="Umbraco.Cms.Web.Website" version="[10.3.0, 12.0.0)" exclude="Build,Analyzers" />
       </group>
       <group targetFramework="net7.0">
+        <dependency id="Struct.PIM.Api.Client" version="[3.11.2, 4.0.0)" exclude="Build,Analyzers" />
         <dependency id="Umbraco.Cms.Web.BackOffice" version="[10.3.0, 12.0.0)" exclude="Build,Analyzers" />
         <dependency id="Umbraco.Cms.Web.Website" version="[10.3.0, 12.0.0)" exclude="Build,Analyzers" />
       </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="App_Plugins\Struct.Umbraco.StructPimPicker\css\struct.pim.min.css" target="content\Struct.Umbraco.StructPimPicker\css" />
-    <file src="App_Plugins\Struct.Umbraco.StructPimPicker\fonts\**" target="content\App_Plugins\Struct.Umbraco.StructPimPicker\fonts" />
-    <file src="App_Plugins\Struct.Umbraco.StructPimPicker\js\**" target="content\App_Plugins\Struct.Umbraco.StructPimPicker\js" />
-    <file src="App_Plugins\Struct.Umbraco.StructPimPicker\lang\en-GB.xml" target="content\App_Plugins\Struct.Umbraco.StructPimPicker\lang\en-GB.xml" />
-    <file src="App_Plugins\Struct.Umbraco.StructPimPicker\lang\en-GB.xml" target="content\App_Plugins\Struct.Umbraco.StructPimPicker\lang\en-US.xml" />
-    <file src="App_Plugins\Struct.Umbraco.StructPimPicker\views\**" target="content\App_Plugins\Struct.Umbraco.StructPimPicker\views" />
-    <file src="App_Plugins\Struct.Umbraco.StructPimPicker\package.manifest" target="content\App_Plugins\Struct.Umbraco.StructPimPicker\" />
-    <file src="LICENSE.md" target="content\App_Plugins\Struct.Umbraco.StructPimPicker\" />
-    <file src="bin\release\net6.0\Struct.Umbraco.StructPimPicker.dll" target="lib\net60" />
-    <file src="bin\release\net7.0\Struct.Umbraco.StructPimPicker.dll" target="lib\net70" />
+    <file src="App_Plugins\Struct.Umbraco.StructPimPicker\css\struct.pim.min.css" target="App_Plugins\Struct.Umbraco.StructPimPicker\css" />
+    <file src="App_Plugins\Struct.Umbraco.StructPimPicker\fonts\**" target="App_Plugins\Struct.Umbraco.StructPimPicker\fonts" />
+    <file src="App_Plugins\Struct.Umbraco.StructPimPicker\js\**" target="App_Plugins\Struct.Umbraco.StructPimPicker\js" />
+    <file src="App_Plugins\Struct.Umbraco.StructPimPicker\lang\en-GB.xml" target="App_Plugins\Struct.Umbraco.StructPimPicker\lang\en-GB.xml" />
+    <file src="App_Plugins\Struct.Umbraco.StructPimPicker\lang\en-GB.xml" target="App_Plugins\Struct.Umbraco.StructPimPicker\lang\en-US.xml" />
+    <file src="App_Plugins\Struct.Umbraco.StructPimPicker\views\**" target="App_Plugins\Struct.Umbraco.StructPimPicker\views" />
+    <file src="App_Plugins\Struct.Umbraco.StructPimPicker\package.manifest" target="App_Plugins\Struct.Umbraco.StructPimPicker\" />
+    <file src="build\**\*.*" target="buildTransitive" />
+    <file src="PIM-logo.png" target="" />
+    <file src="bin\release\net60\Struct.Umbraco.StructPimPicker.dll" target="lib\net6.0" />
+    <file src="bin\release\net70\Struct.Umbraco.StructPimPicker.dll" target="lib\net7.0" />
   </files>
 </package>

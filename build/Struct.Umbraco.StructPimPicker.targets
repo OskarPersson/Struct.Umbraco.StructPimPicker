@@ -1,0 +1,30 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<StructPIMPropertyEditorFilesPath>
+      $([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..'))\App_Plugins\Struct.Umbraco.StructPimPicker\**\*.*
+
+    </StructPIMPropertyEditorFilesPath>
+	</PropertyGroup>
+	<Target Name="CopyStructPIMPropertyEditorAssets" BeforeTargets="Build">
+		<ItemGroup>
+			<StructPIMPropertyEditorFiles Include="$(StructPIMPropertyEditorFilesPath)" />
+		</ItemGroup>
+		<Message
+			Text="Copying StructPIM Property Editor files: $(StructPIMPropertyEditorFilesPath) - #@(StructPIMPropertyEditorFiles->Count()) files"
+			Importance="high" />
+		<Copy SourceFiles="@(StructPIMPropertyEditorFiles)"
+		      DestinationFiles="@(StructPIMPropertyEditorFiles->'$(MSBuildProjectDirectory)\App_Plugins\Struct.Umbraco.StructPimPicker\%(RecursiveDir)%(Filename)%(Extension)')"
+		      SkipUnchangedFiles="true" />
+
+	</Target>
+
+	<Target Name="ClearStructPIMPropertyEditorAssets" BeforeTargets="Clean">
+		<ItemGroup>
+			<StructPIMPropertyEditorDir
+				Include="$(MSBuildProjectDirectory)\App_Plugins\Struct.Umbraco.StructPimPicker" />
+		</ItemGroup>
+		<Message Text="Clear old Struct PIM Property Editor data"  Importance="high" />
+		<RemoveDir Directories="@(StructPIMPropertyEditorDir)"  />
+	</Target>
+
+</Project>

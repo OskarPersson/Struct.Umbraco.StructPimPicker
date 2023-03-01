@@ -1,4 +1,4 @@
-namespace Umbraco.Cms.Integrations.PIM.StructPIM
+namespace Struct.Umbraco.StructPimPicker
 {
     public class Program
     {
