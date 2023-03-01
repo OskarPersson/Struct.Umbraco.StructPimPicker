@@ -226,6 +226,9 @@
                     else if (response.data.statusText) {
                         notificationsService.error(response.data.statusText);
                     }
+                    else if (response.data.ExceptionMessage) {
+                        notificationsService.error(response.data.ExceptionMessage);
+                    }
                     else {
                         var text;
                         if (response.data.Errors != null && response.data.Errors.length > 0) {
