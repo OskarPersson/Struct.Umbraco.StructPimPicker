@@ -15,7 +15,7 @@ Required minimum versions of Umbraco CMS:
 
 Accessing the resources from StructPIM through the REST API requires an API key and an API Url.
 
-To retrieve your API key and the API instance of your environment, you need to go in the _Users_ section of the _Control Center_ and generate your key. 
+To retrieve your API key, go to _Settings_ -> _API Configuration_ and generate your key.
 
 ### Configuration
 
