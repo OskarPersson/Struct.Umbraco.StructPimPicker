@@ -23,12 +23,10 @@ The following configuration is required for working with the StructPIM API:
 
 ```
 {
-  "StructPIM": {
-    "CMS": {
+  "StructPIM": {    
       "ApiUrl": "https://[API_base_url]/",
       "ApiKey": "[API_key]",
-      "DefaultLanguage": "en-GB"
-    }
+      "DefaultLanguage": "en-GB"    
   }
 }
 ```
