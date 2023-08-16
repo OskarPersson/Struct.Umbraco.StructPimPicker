@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFrameworks>net60;net70</TargetFrameworks>
+    <TargetFrameworks>net70</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
@@ -38,7 +38,7 @@
     <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl>https://github.com/StructPim/Struct.Umbraco.StructPimPicker</PackageProjectUrl>
     <RepositoryUrl>https://github.com/StructPim/Struct.Umbraco.StructPimPicker</RepositoryUrl>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
     <Authors>Struct A/S</Authors>
     <Company>Struct A/S</Company>
     <PackageTags>Umbraco;Umbraco-Marketplace</PackageTags>
@@ -46,8 +46,9 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="Struct.PIM.Api.Client" Version="3.11.2" />
-    <PackageReference Include="Umbraco.Cms" Version="10.3.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Struct.PIM.Api.Client" Version="3.12.11" />
+    <PackageReference Include="Umbraco.Cms" Version="12.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -151,8 +152,8 @@
     <RazorCompileOnBuild>false</RazorCompileOnBuild>
     <RazorCompileOnPublish>false</RazorCompileOnPublish>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.7.0</AssemblyVersion>
-    <FileVersion>1.0.7.0</FileVersion>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
   </PropertyGroup>
   
 </Project>
