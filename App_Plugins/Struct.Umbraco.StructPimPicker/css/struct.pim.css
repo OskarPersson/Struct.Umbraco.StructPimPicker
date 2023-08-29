@@ -13570,3 +13570,10 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
   display: flex;
   flex-wrap: wrap;
 }
+
+.umb-overlay.umb-overlay-right.umb-overlay--large-pim {
+  width: 1000px;
+}
+.umb-overlay.umb-overlay-right.umb-overlay--large-pim .umb-overlay-header {
+  display: none;
+}

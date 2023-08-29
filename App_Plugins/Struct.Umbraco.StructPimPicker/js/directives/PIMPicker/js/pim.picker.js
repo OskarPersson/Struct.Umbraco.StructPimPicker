@@ -25,7 +25,7 @@
         }
     };
 
-    function pimPickerCtrl($element, structUmbracoStructPimPickerUmbracoHelper, structUmbracoStructPimPickerMediaService, structUmbracoStructPimPickerProductService, structUmbracoStructPimPickerVariantGroupService, $location, $timeout, editorService) {
+    function pimPickerCtrl($element, structUmbracoStructPimPickerUmbracoHelper, structUmbracoStructPimPickerMediaService, structUmbracoStructPimPickerProductService, structUmbracoStructPimPickerVariantGroupService, $location, $timeout, editorService, overlayService) {
         var ctrl = this;
         ctrl.currentNgModel = null;
 
@@ -62,7 +62,106 @@
         };
 
         ctrl.openDialog = function () {
-            ctrl.overlay = {
+            var options = {
+                view: "/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/PIMPicker/views/pickerdialog.html",
+                disableBackdropClick: true,
+                disableEscKey: true,
+                position: 'right',
+                size: 'large-pim',
+                submit: function (model) {
+                    var selectedItems = [];
+
+                    if (ctrl.allowMultiple) {
+                        angular.forEach(model.selectedCategories, function (category) {
+                            selectedItems.push({
+                                ItemId: category.CategoryId,
+                                ReferenceType: 10
+                            });
+                        });
+                    }
+
+                    if (ctrl.allowMultiple) {
+                        selectedItems = selectedItems.concat(_.map(model.selectedCollections,
+                            function (item) {
+                                return {
+                                    ItemId: item.Uid,
+                                    ReferenceType: 40
+                                };
+                            }));
+                    }
+                    console.log(model.selectedProductAndVariants)
+                    if (ctrl.allowMultiple && model.selectedProductAndVariants.Product && model.selectedProductAndVariants.Product.length > 0) {
+                        var productIds = _.map(Object.keys(model.selectedProductAndVariants.Product), function (element) { return parseInt(element); });
+                        selectedItems = selectedItems.concat(_.map(productIds,
+                            function (productId) {
+                                return {
+                                    ItemId: productId,
+                                    ReferenceType: 20
+                                };
+                            }));
+                    }
+
+                    if (ctrl.allowMultiple && model.selectedProductAndVariants.Variant && model.selectedProductAndVariants.Variant.length > 0) {
+                        var variantIds = _.map(Object.keys(model.selectedProductAndVariants.Variant), function (element) { return parseInt(element); });
+                        selectedItems = selectedItems.concat(_.map(variantIds,
+                            function (variantId) {
+                                return {
+                                    ItemId: variantId,
+                                    ReferenceType: 30
+                                };
+                            }));
+                    }
+
+                    if (ctrl.allowMultiple && model.selectedProductAndVariants.VariantGroup && model.selectedProductAndVariants.VariantGroup.length > 0) {
+                        var variantGroupIds = _.map(Object.keys(model.selectedProductAndVariants.VariantGroup), function (element) { return parseInt(element); });
+                        selectedItems = selectedItems.concat(_.map(variantGroupIds,
+                            function (variantGroupId) {
+                                return {
+                                    ItemId: variantGroupId,
+                                    ReferenceType: 50
+                                };
+                            }));
+                    }
+
+
+                    angular.forEach(selectedItems, function (selectedItem) {
+                        var alreadySelected = _.some(ctrl.ngModel, function (item) { return item.ItemId === selectedItem.ItemId && item.ReferenceType === selectedItem.ReferenceType });
+                        if (!alreadySelected) {
+                            ctrl.ngModel.push(selectedItem);
+                        }
+                    });
+
+                    $element.controller("form").$setDirty();
+                    //ctrl.setThumbnails();
+                    ctrl.setItemNames();
+                    overlayService.close();
+
+                    if (ctrl.onChange) {
+                        ctrl.onChange();
+                    }
+                },
+                close: function () {
+                    overlayService.close();
+                },
+                AllowMultiple: ctrl.allowMultiple,
+                AllowProductSelection: ctrl.allowProductSelection,
+                AllowVariantSelection: ctrl.allowVariantSelection,
+                AllowVariantGroupSelection: ctrl.allowVariantGroupSelection,
+                AllowProductGroupSelection: ctrl.allowProductGroupSelection,
+                AllowProductCollectionSelection: ctrl.allowProductCollectionSelection,
+                AllowVariantCollectionSelection: ctrl.allowVariantCollectionSelection,
+                OnlyMaster: ctrl.onlyMaster,
+                DefaultCatalogue: ctrl.defaultCatalogue,
+                LimitToProductStructures: ctrl.limitToProductStructures,
+                SelectOnlySubItems: ctrl.selectOnlySubItems,
+                CurrentItemType: ctrl.currentItemType,
+                CurrentItemId: ctrl.currentItemId
+            }
+
+            overlayService.open(options);
+
+
+/*            ctrl.overlay = {
                 view: "/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/PIMPicker/views/pickerdialog.html",
                 show: true,
                 close: function () {
@@ -98,7 +197,7 @@
                 SelectOnlySubItems: ctrl.selectOnlySubItems,
                 CurrentItemType: ctrl.currentItemType,
                 CurrentItemId: ctrl.currentItemId
-            };
+            };*/
         };
 
         ctrl.dragStart = function (e, ui) {

@@ -10,14 +10,14 @@
         Object.defineProperty(ctrl, '$pristine', alwaysFalse);
         Object.defineProperty(ctrl, '$dirty', alwaysFalse);
 
-        $scope.selectedProductAndVariants = [];
-        $scope.selectedCategories = [];
-        $scope.selectedCollections = [];
+        $scope.model.selectedProductAndVariants = [];
+        $scope.model.selectedCategories = [];
+        $scope.model.selectedCollections = [];
 
         $scope.controlModel = {};
 
         $scope.allowMultiple = $scope.model.AllowMultiple;
-
+        
         $scope.controlModel.showProductsAndVariants = $scope.model.AllowProductSelection || $scope.model.AllowVariantSelection || $scope.model.AllowVariantGroupSelection;
         $scope.controlModel.showCatalogue = $scope.model.AllowProductGroupSelection;
         $scope.controlModel.showCollection = $scope.model.AllowProductCollectionSelection || $scope.model.AllowVariantCollectionSelection;
@@ -29,6 +29,14 @@
         } else if ($scope.model.AllowProductCollectionSelection || $scope.model.AllowVariantCollectionSelection) {
             $scope.controlModel.activeTab = "collection";
         }
+        /*
+        $scope.$watch(
+            function (scope) { return $scope.selectedProductAndVariants.length + '_' + $scope.selectedCategories.length + '_' + $scope.selectedCollections.length; },
+            function (current, old) {
+                console.log($scope.selectedProductAndVariants.length + '_' + $scope.selectedCategories.length + '_' + $scope.selectedCollections.length);
+                $scope.updateSelection();
+            }, true);
+            */
 
         if ($scope.controlModel.showProductsAndVariants) {
             $scope.controlModel.pimSearch = {
@@ -100,8 +108,8 @@
     $scope.cancel = function () {
         $scope.model.close();
     };
-
-    $scope.submitSelection = function () {
+    /*
+    $scope.updateSelection = function () {
         var selectedItems = [];
 
         //If multiple is not allowed, clear selected from inactive tabs
@@ -158,10 +166,10 @@
                     };
                 }));
         }
-
-        $scope.model.submit(selectedItems);
+        $scope.model.selectedItems = selectedItems;
+        //$scope.model.submit(selectedItems);
     };
-
+    */
     init();
 
 }]);

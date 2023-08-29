@@ -37,3 +37,10 @@ $icomoon-font-path: "/app_plugins/Struct.Umbraco.StructPimPicker/fonts/fonts" !d
 }
 
 
+.umb-overlay.umb-overlay-right.umb-overlay--large-pim {
+    width: 1000px;
+
+    .umb-overlay-header {
+        display:none;
+    }
+}
