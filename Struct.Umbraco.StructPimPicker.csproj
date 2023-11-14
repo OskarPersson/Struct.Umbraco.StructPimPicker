@@ -38,7 +38,7 @@
     <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl>https://github.com/StructPim/Struct.Umbraco.StructPimPicker</PackageProjectUrl>
     <RepositoryUrl>https://github.com/StructPim/Struct.Umbraco.StructPimPicker</RepositoryUrl>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <Authors>Struct A/S</Authors>
     <Company>Struct A/S</Company>
     <PackageTags>Umbraco;Umbraco-Marketplace</PackageTags>
@@ -152,8 +152,8 @@
     <RazorCompileOnBuild>false</RazorCompileOnBuild>
     <RazorCompileOnPublish>false</RazorCompileOnPublish>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
+    <AssemblyVersion>1.1.1.0</AssemblyVersion>
+    <FileVersion>1.1.1.0</FileVersion>
   </PropertyGroup>
   
 </Project>
