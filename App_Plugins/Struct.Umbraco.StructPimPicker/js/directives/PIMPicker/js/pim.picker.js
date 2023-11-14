@@ -89,7 +89,7 @@
                                 };
                             }));
                     }
-                    console.log(model.selectedProductAndVariants)
+                    
                     if (ctrl.allowMultiple && model.selectedProductAndVariants.Product && model.selectedProductAndVariants.Product.length > 0) {
                         var productIds = _.map(Object.keys(model.selectedProductAndVariants.Product), function (element) { return parseInt(element); });
                         selectedItems = selectedItems.concat(_.map(productIds,
@@ -127,6 +127,9 @@
                     angular.forEach(selectedItems, function (selectedItem) {
                         var alreadySelected = _.some(ctrl.ngModel, function (item) { return item.ItemId === selectedItem.ItemId && item.ReferenceType === selectedItem.ReferenceType });
                         if (!alreadySelected) {
+                            if (!(ctrl.ngModel instanceof Array))
+                                ctrl.ngModel = [];
+
                             ctrl.ngModel.push(selectedItem);
                         }
                     });
