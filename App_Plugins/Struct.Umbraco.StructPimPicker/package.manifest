@@ -76,10 +76,7 @@
     "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/services/UmbracoHelper.Service.js",
     
     "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/Overlay/structpimoverlayhelper.service.js",
-    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/Overlay/structpimModal.service.js",
     "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/Overlay/structpimoverlay.directive.js",
-    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/Overlay/structpiminlineoverlay.directive.js",
-    "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/Overlay/pimoverlaybackdrop.directive.js",
     
     "~/App_Plugins/Struct.Umbraco.StructPimPicker/js/directives/LoadIndicator/structloadinicator.directive.js",
     
